@@ -40,3 +40,6 @@ class AccountCreationRequest:
 
     def get_pin(self) -> str:
         return self.__pin
+
+    def set_first_name(self, fist_name):
+        self.__first_name = fist_name
