@@ -13,4 +13,7 @@ class AccountService:
     def count(self) -> int:
         raise NotImplementedError
 
+    def find_by_account_number(self, account_number: int) -> AccountResponse:
+        raise NotImplementedError
+
 
