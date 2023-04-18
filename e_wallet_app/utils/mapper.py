@@ -1,4 +1,5 @@
 from e_wallet_app.data.models.account import Account
+from e_wallet_app.dtos.reponse.transaction_response import TransactionResponse
 
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
@@ -28,3 +29,8 @@ def map_account_into_response(account: Account) -> AccountResponse:
     response.set_email_address(account.get_email_address())
     response.set_id_num(account.get_id_num())
     return response
+
+
+def map_all_transactions_to_transaction_responses(transactions) -> list[TransactionResponse]:
+    responses: list[TransactionResponse] = []
+    return responses

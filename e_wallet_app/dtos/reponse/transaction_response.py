@@ -30,13 +30,6 @@ class TransactionResponse:
     def get_account_id_num(self) -> int:
         return self.__account_id_num
 
-    def set_balance(self, balance: int) -> None:
-        self.__balance = balance
-
-    def get_balance(self) -> int:
-        return self.__balance
-
     def __str__(self):
-            return f"TransactionResponse(id_num={self.__id_num}, account_id_num={self.__account_id_num}, " \
-                   f"recipient_account_number={self.__recipient_account_number}, amount={self.__amount}, " \
-                   f"balance={self.__balance})"
+        return f"TransactionResponse(id_num={self.__id_num}, account_id_num={self.__account_id_num}, " \
+               f"recipient_account_number={self.__recipient_account_number}, amount={self.__amount},)"
