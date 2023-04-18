@@ -16,6 +16,17 @@ class AccountServiceImpl(AccountService):
         self.__transaction_service: TransactionService = TransactionServiceImpl()
         self.__account_number_generator: int = 99
 
+    def find_account_by_id(self, id: int) -> AccountResponse:
+        self.validate_account_id(id)
+        account: Account = self.__account_repository.find_by_id(id)
+        response: AccountResponse = AccountResponse()
+        mapper.map(response, account)
+        return response
+
+    def validate_account_id(self, id: int) -> None:
+        if self.__account_repository.find_by_id(id) is None:
+            raise ValueError("Account does not exist")
+
     def create_new_account(self, request: AccountCreationRequest) -> AccountResponse:
         self.validate_duplicate_account(request.get_email_address())
         account: Account = mapper.map_account_request_into_account(request)
