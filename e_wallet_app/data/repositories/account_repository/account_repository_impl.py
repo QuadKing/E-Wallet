@@ -39,3 +39,10 @@ class AccountRepositoryImpl(AccountRepository):
 
     def find_all_account(self) -> list[Account]:
         return self.__accounts
+
+    def find_by_email_address(self, email_address: str) -> Account:
+        for each in self.__accounts:
+            if each.get_email_address() == email_address:
+                return each
+
+

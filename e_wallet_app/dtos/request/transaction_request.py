@@ -1,7 +1,6 @@
-class Transaction:
+class TransactionRequest:
 
     def __init__(self):
-        self.__id_num: int = 0
         self.__account_id_num: int = 0
         self.__recipient_account_number: int = 0
         self.__amount: float = 0.0
@@ -24,12 +23,6 @@ class Transaction:
 
     def get_sender_pin(self) -> str:
         return self.__sender_pin
-
-    def set_id_num(self, id_num: int) -> None:
-        self.__id_num = id_num
-
-    def get_id_num(self) -> int:
-        return self.__id_num
 
     def set_account_id_num(self, account_id_num: int) -> None:
         self.__account_id_num = account_id_num
