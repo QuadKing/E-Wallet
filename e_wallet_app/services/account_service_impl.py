@@ -16,9 +16,9 @@ class AccountServiceImpl(AccountService):
         self.__transaction_service: TransactionService = TransactionServiceImpl()
         self.__account_number_generator: int = 99
 
-    def find_account_by_id(self, id: int) -> AccountResponse:
-        self.validate_account_id(id)
-        account: Account = self.__account_repository.find_by_id(id)
+    def find_account_by_id(self, id_num: int) -> AccountResponse:
+        self.validate_account_id(id_num)
+        account: Account = self.__account_repository.find_by_id(id_num)
         response: AccountResponse = AccountResponse()
         mapper.map(response, account)
         return response

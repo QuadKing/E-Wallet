@@ -3,9 +3,6 @@ from unittest import TestCase
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 from e_wallet_app.data.repositories.account_repository.account_repository_impl import AccountRepositoryImpl
-from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
-from e_wallet_app.services.account_service import AccountService
-from e_wallet_app.services.account_service_impli import AccountServiceImpl
 
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
@@ -35,11 +32,7 @@ class TestAccountService(TestCase):
         self.account_response = self.account_service.create_new_account(self.account_request)
 
     def test_account_can_be_find_by_id(self):
-        ##self.account = Account()
-       ## self.account_request = AccountCreationRequest()
-        ##self.account_service.create_new_account(self.account_request)
-
-        self.assertEquals("Prof", self.account_service.find_account_by_id(1).get_first_name())
+        self.assertEqual("Prof", self.account_service.find_account_by_id(1).get_first_name())
 
     def test_account_can_be_created(self):
         self.assertEqual(1, self.account_service.count())
