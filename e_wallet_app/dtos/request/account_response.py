@@ -1,13 +1,12 @@
-class Account:
+class AccountResponse:
 
-    def __init__(self):
+    def init(self):
         self.__id_num: int = 0
         self.__first_name: str = ""
         self.__last_name: str = ""
         self.__account_number: int = 0
         self.__password: str = ""
         self.__email_address: str = ""
-        self.__pin: str = ""
 
     def set_first_name(self, first_name: str) -> None:
         self.__first_name = first_name
@@ -38,12 +37,6 @@ class Account:
 
     def get_email_address(self) -> str:
         return self.__email_address
-
-    def set_pin(self, pin: str) -> None:
-        self.__pin = pin
-
-    def get_pin(self) -> str:
-        return self.__pin
 
     def set_id_num(self, id_num: int) -> None:
         self.__id_num = id_num
