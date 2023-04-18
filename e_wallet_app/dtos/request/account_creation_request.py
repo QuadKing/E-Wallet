@@ -1,7 +1,5 @@
-class Account:
-
+class AccountCreationRequest:
     def __init__(self):
-        self.__id_num: int = 0
         self.__first_name: str = ""
         self.__last_name: str = ""
         self.__account_number: int = 0
@@ -45,8 +43,4 @@ class Account:
     def get_pin(self) -> str:
         return self.__pin
 
-    def set_id_num(self, id_num: int) -> None:
-        self.__id_num = id_num
 
-    def get_id_num(self) -> int:
-        return self.__id_num
