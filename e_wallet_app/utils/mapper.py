@@ -31,9 +31,12 @@ def map_account_into_response(account: Account) -> AccountResponse:
     response.set_id_num(account.get_id_num())
     return response
 
+
 def map_all_transactions_to_transaction_responses(transactions) -> list[TransactionResponse]:
     responses: list[TransactionResponse] = []
     return responses
+
+
 def map_transaction_request_to_transaction(request: TransactionRequest) -> Transaction:
     transaction: Transaction = Transaction()
     transaction.set_account_id_num(request.ge())
