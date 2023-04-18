@@ -1,15 +1,12 @@
 class AccountCreationRequest:
 
-    def __init__(self):
+    def init(self):
         self.__first_name: str = ""
         self.__last_name: str = ""
         self.__account_number: int = 0
         self.__password: str = ""
         self.__email_address: str = ""
         self.__pin: str = ""
-
-    def set_first_name(self, first_name: str) -> None:
-        self.__first_name = first_name
 
     def get_first_name(self) -> str:
         return self.__first_name
