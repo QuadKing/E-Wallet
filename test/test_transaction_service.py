@@ -19,3 +19,8 @@ class TestTransactionService(TestCase):
         self.transaction.set_recipient_account_number(2)
         self.transaction.set_amount(1000)
         self.transaction.set_sender_pin("1234")
+
+    def test_that_account_can_be_found_by_id(self):
+        self.transaction.set_account_id_num(1)
+        self.transaction.set_recipient_account_number(2)
+        self.transaction.set_sender_pin("1234")
