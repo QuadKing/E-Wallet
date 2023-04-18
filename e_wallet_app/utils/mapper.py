@@ -1,10 +1,5 @@
 from e_wallet_app.data.models.account import Account
-<<<<<<< HEAD
-from e_wallet_app.dtos.reponse.transaction_response import TransactionResponse
-=======
 from e_wallet_app.data.models.transaction import Transaction
->>>>>>> 6139a369bc2a289e9c4e3bb15a5f11de7d5ea43f
-
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
@@ -36,15 +31,12 @@ def map_account_into_response(account: Account) -> AccountResponse:
     response.set_id_num(account.get_id_num())
     return response
 
-
-<<<<<<< HEAD
 def map_all_transactions_to_transaction_responses(transactions) -> list[TransactionResponse]:
     responses: list[TransactionResponse] = []
     return responses
-=======
 def map_transaction_request_to_transaction(request: TransactionRequest) -> Transaction:
     transaction: Transaction = Transaction()
-    transaction.set_account_id_num(request.get_account_id_num())
+    transaction.set_account_id_num(request.ge())
     transaction.set_amount(request.get_amount())
     transaction.set_sender_pin(request.get_sender_pin())
     transaction.set_recipient_account_number(request.get_recipient_account_number())
@@ -58,4 +50,3 @@ def map_transaction_to_transaction_response(transaction: Transaction):
     response.set_recipient_account_number(transaction.get_recipient_account_number())
     response.set_account_id_num(transaction.get_account_id_num())
     return response
->>>>>>> 6139a369bc2a289e9c4e3bb15a5f11de7d5ea43f
