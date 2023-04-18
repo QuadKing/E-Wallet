@@ -36,3 +36,6 @@ class TransactionRepositoryImpl(TransactionRepository):
             if each.get_account_id_num() == account_id_num:
                 transactions.append(each)
         return transactions
+
+    def get_all_transactions(self) -> list[Transaction]:
+        return self.__transactions
