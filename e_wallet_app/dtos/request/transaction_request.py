@@ -25,3 +25,6 @@ class TransactionRequest:
 
     def set_account_id_num(self, account_id_num: int) -> None:
         self.__account_id_num = account_id_num
+
+    def get_account_id_num(self) -> int:
+        return self.__account_id_num

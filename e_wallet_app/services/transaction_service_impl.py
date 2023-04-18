@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-from e_wallet_app.data.models.transaction import Transaction
-from e_wallet_app.data.repositories.transaction_repository import transaction_repository
-from e_wallet_app.data.repositories.transaction_repository.transaction_repository import TransactionRepository
-from e_wallet_app.data.repositories.transaction_repository.transaction_repository_impl import TransactionRepositoryImpl
-from e_wallet_app.dtos.reponse.transaction_response import TransactionResponse
-from e_wallet_app.dtos.request.transaction_request import TransactionRequest
-=======
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
@@ -18,7 +10,6 @@ from e_wallet_app.exceptions.account_does_not_exist_exception import AccountDoes
 from e_wallet_app.exceptions.insufficient_fund_exception import InsufficientFundException
 from e_wallet_app.exceptions.invalid_amount_exception import InvalidAmountException
 from e_wallet_app.exceptions.invalid_credential_exception import InvalidCredentialException
->>>>>>> 6139a369bc2a289e9c4e3bb15a5f11de7d5ea43f
 from e_wallet_app.services.transaction_service import TransactionService
 from e_wallet_app.utils import mapper
 
@@ -86,8 +77,8 @@ class TransactionServiceImpl(TransactionService):
         transactions: list[Transaction] = self.__transaction_repository.get_all_transactions()
         return mapper.map_all_transactions_to_transaction_responses(transactions)
 
-    def find_list_of_transaction_by_account_id(self: TransactionRequest) -> TransactionResponse:
-        TransactionRepository.find_all_by_account_id(TransactionRequest)
+    def find_list_of_transaction_by_account_id(self, account_id: int) -> TransactionResponse:
+        TransactionRepository.find_all_by_account_id(account_id)
         transaction = TransactionResponse()
         return transaction
 

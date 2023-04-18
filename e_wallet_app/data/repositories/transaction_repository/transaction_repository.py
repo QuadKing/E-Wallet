@@ -18,9 +18,11 @@ class TransactionRepository:
     def find_all_by_account_id(self, account_id_num: int) -> list[Transaction]:
         raise NotImplementedError
 
-<<<<<<< HEAD
+    def find_all_by_account_number(self, recipient_account_number):
+        raise NotImplementedError
+
     def get_all_transactions(self) -> list[Transaction]:
-=======
+        raise NotImplementedError
+
     def find_all_by_account_number(self, account_number: int):
->>>>>>> 6139a369bc2a289e9c4e3bb15a5f11de7d5ea43f
         raise NotImplementedError

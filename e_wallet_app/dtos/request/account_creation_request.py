@@ -1,6 +1,6 @@
 class AccountCreationRequest:
 
-    def init(self):
+    def __init__(self):
         self.__first_name: str = ""
         self.__last_name: str = ""
         self.__account_number: int = 0
