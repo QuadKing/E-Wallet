@@ -3,7 +3,6 @@ from e_wallet_app.data.repositories.transaction_repository.transaction_repositor
 
 
 class TransactionRepositoryImpl(TransactionRepository):
-
     def __init__(self):
         self.__transactions: list[Transaction] = []
         self.__count: int = 0
@@ -34,5 +33,12 @@ class TransactionRepositoryImpl(TransactionRepository):
         transactions: list[Transaction] = []
         for each in self.__transactions:
             if each.get_account_id_num() == account_id_num:
+                transactions.append(each)
+        return transactions
+
+    def find_all_by_account_number(self, account_number: int):
+        transactions: list[Transaction] = []
+        for each in self.__transactions:
+            if each.get_recipient_account_number() == account_number:
                 transactions.append(each)
         return transactions
