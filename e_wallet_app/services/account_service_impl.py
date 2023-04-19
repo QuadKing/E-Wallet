@@ -1,5 +1,5 @@
-from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 from e_wallet_app.data.models.account import Account
+from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 from e_wallet_app.data.repositories.account_repository.account_repository_impl import AccountRepositoryImpl
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
@@ -18,7 +18,7 @@ class AccountServiceImpl(AccountService):
     def __init__(self):
         self.WALLET_ID = 0
         self.JOINING_BONUS: float = 1000.0
-        self.__account_repository: AccountRepositoryImpl = AccountRepositoryImpl()
+        self.__account_repository: AccountRepository = AccountRepositoryImpl()
         self.__transaction_service: TransactionService = TransactionServiceImpl()
         self.__account_number_generator: int = 99
 

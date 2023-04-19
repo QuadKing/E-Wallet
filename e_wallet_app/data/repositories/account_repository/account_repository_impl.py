@@ -5,9 +5,9 @@ from e_wallet_app.data.repositories.account_repository.account_repository import
 
 
 class AccountRepositoryImpl(AccountRepository):
+    __accounts: list[Account] = []
 
     def __init__(self):
-        self.__accounts: list[Account] = []
         self.__count: int = 0
 
     def save(self, account: Account) -> Account:
