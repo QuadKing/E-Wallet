@@ -25,31 +25,25 @@ class TestTransactionService(TestCase):
         request1.set_last_name("James")
         request1.set_pin("1234")
         request1.set_email_address("spencer@gmail.com")
+        self.account1 = self.account_service.create_new_account(request1)
+
         request2 = AccountCreationRequest()
         request2.set_first_name("Allwell")
         request2.set_last_name("Joshua")
         request2.set_pin("1111")
         request2.set_email_address("allwell@gmail.com")
 
-        self.account1 = self.account_service.create_new_account(request1)
         self.account2 = self.account_service.create_new_account(request2)
-
         self.transaction.set_amount(1000.0)
         self.transaction.set_sender_pin("1234")
         self.transaction.set_account_id_num(self.account1.get_id_num())
         self.transaction.set_recipient_account_number(self.account2.get_account_number())
         self.transaction_service.transfer(self.transaction)
 
-    def test_that_account_a_can_transfer_to_account_b(self):
-        self.transaction.set_account_id_num(1)
-        self.transaction.set_recipient_account_number(2)
-        self.transaction.set_amount(1000)
-        self.transaction.set_sender_pin("1234")
-
-    def test_that_account_can_be_found_by_id(self):
-        self.transaction.set_account_id_num(1)
-        self.transaction.set_recipient_account_number(2)
-        self.transaction.set_sender_pin("1234")
+    def tearDown(self) -> None:
+        self.account_service = AccountServiceImpl()
+        self.transaction_service = TransactionServiceImpl()
+        self.transaction = TransactionRequest()
 
     def test_transaction_can_be_found_by_id(self):
         self.assertEqual(1000, self.transaction_service.find_by_id(1).get_amount())
