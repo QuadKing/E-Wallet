@@ -1,6 +1,5 @@
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.models.transaction import Transaction
-
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
@@ -22,6 +21,14 @@ def map_account_request_into_account(request: AccountCreationRequest) -> Account
     account.set_pin(request.get_pin())
     account.set_email_address(request.get_email_address())
     return account
+
+
+def map_account_to_response(response: AccountResponse, account: Account) -> None:
+    response.set_first_name(account.get_first_name())
+    response.set_id_num(account.get_id_num())
+    response.set_email_address(account.get_email_address())
+    response.set_account_number(account.get_account_number())
+    response.set_last_name(account.get_last_name())
 
 
 def map_account_into_response(account: Account) -> AccountResponse:
