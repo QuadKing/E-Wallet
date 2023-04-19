@@ -1,6 +1,5 @@
 class AccountCreationRequest:
     def __init__(self):
-
         self.__first_name: str = ""
         self.__last_name: str = ""
         self.__account_number: int = 0
@@ -10,7 +9,6 @@ class AccountCreationRequest:
 
     def set_first_name(self, first_name: str) -> None:
         self.__first_name = first_name
-
 
     def get_first_name(self) -> str:
         return self.__first_name
@@ -42,9 +40,5 @@ class AccountCreationRequest:
     def set_pin(self, pin: str) -> None:
         self.__pin = pin
 
-
-
     def get_pin(self) -> str:
         return self.__pin
-
-

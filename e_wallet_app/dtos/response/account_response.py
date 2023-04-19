@@ -4,11 +4,13 @@ class AccountResponse:
         self.__id_num: int = 0
         self.__first_name: str = ""
         self.__last_name: str = ""
+        self.__name: str = ""
         self.__account_number: int = 0
         self.__password: str = ""
         self.__email_address: str = ""
         self.__balance: float = 0.0
         self.__name: str = ""
+        self.__id_num: int = 0
 
     def set_first_name(self, first_name: str) -> None:
         self.__first_name = first_name
@@ -57,3 +59,14 @@ class AccountResponse:
 
     def get_name(self, name):
         return self.__name
+
+    def __str__(self) -> str:
+        return f"""
+        First Name : {self.__first_name}
+        Last Name : {self.__last_name}
+        Email Address: {self.__email_address}
+        Account Number : {self.__account_number}
+        Account Id : {self.__id_num}
+
+        """
+

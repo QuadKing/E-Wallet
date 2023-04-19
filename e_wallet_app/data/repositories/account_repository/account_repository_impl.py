@@ -27,7 +27,7 @@ class AccountRepositoryImpl(AccountRepository):
         self.__accounts.append(account)
         self.__count += 1
 
-    def find_by_id(self, id_num: str) -> Account:
+    def find_by_id(self, id_num: int) -> Account:
         for each in self.__accounts:
             if each.get_id_num() == id_num:
                 return each
