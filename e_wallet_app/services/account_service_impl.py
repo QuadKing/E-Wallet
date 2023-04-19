@@ -39,10 +39,6 @@ class AccountServiceImpl(AccountService):
         mapper.map(response, account)
         return response
 
-        # mapper.map(response, account)
-        # self.set_balance(response)
-        # return response
-
     def validate_account_id(self, id_num: int) -> None:
         if self.__account_repository.find_by_id(id_num) is None:
             raise AccountDoesNotExistException()

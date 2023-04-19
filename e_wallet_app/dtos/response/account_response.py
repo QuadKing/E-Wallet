@@ -2,8 +2,6 @@ class AccountResponse:
 
     def __init__(self):
         self.__id_num: int = 0
-        self.__first_name: str = ""
-        self.__last_name: str = ""
         self.__name: str = ""
         self.__account_number: int = 0
         self.__password: str = ""
@@ -11,18 +9,6 @@ class AccountResponse:
         self.__balance: float = 0.0
         self.__name: str = ""
         self.__id_num: int = 0
-
-    def set_first_name(self, first_name: str) -> None:
-        self.__first_name = first_name
-
-    def get_first_name(self) -> str:
-        return self.__first_name
-
-    def set_last_name(self, last_name: str) -> None:
-        self.__last_name = last_name
-
-    def get_last_name(self) -> str:
-        return self.__last_name
 
     def set_account_number(self, account_number: int) -> None:
         self.__account_number = account_number
@@ -62,11 +48,9 @@ class AccountResponse:
 
     def __str__(self) -> str:
         return f"""
-        First Name : {self.__first_name}
-        Last Name : {self.__last_name}
+         Name : {self.__name}
         Email Address: {self.__email_address}
         Account Number : {self.__account_number}
         Account Id : {self.__id_num}
 
         """
-
