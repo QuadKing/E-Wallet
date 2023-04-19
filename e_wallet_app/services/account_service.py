@@ -1,4 +1,3 @@
-
 from e_wallet_app.dtos.response.account_response import AccountResponse
 
 
@@ -14,4 +13,7 @@ class AccountService:
         raise NotImplementedError
 
     def count(self) -> int:
+        raise NotImplementedError
+
+    def find_by_account_number(self, account_number: int) -> AccountResponse:
         raise NotImplementedError

@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.services.transaction_service import TransactionService
 from e_wallet_app.services.transaction_service_impl import TransactionServiceImpl

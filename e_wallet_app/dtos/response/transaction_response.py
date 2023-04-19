@@ -3,13 +3,13 @@ class TransactionResponse:
     def __init__(self):
         self.__id_num: int = 0
         self.__account_id_num: int = 0
-        self.__recipient_account_number: str = ""
+        self.__recipient_account_number: int = 0
         self.__amount: float = 0.0
 
-    def set_recipient_account_number(self, recipient_account_number: str) -> None:
+    def set_recipient_account_number(self, recipient_account_number: int) -> None:
         self.__recipient_account_number = recipient_account_number
 
-    def get_recipient_account_number(self) -> str:
+    def get_recipient_account_number(self) -> int:
         return self.__recipient_account_number
 
     def set_amount(self, amount: float) -> None:

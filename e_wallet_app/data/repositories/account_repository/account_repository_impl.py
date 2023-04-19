@@ -1,4 +1,4 @@
-from typing import List
+
 
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
@@ -44,5 +44,3 @@ class AccountRepositoryImpl(AccountRepository):
         for each in self.__accounts:
             if each.get_email_address() == email_address:
                 return each
-
-

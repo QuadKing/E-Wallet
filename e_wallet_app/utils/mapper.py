@@ -1,6 +1,17 @@
 from e_wallet_app.data.models.account import Account
+from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
+from e_wallet_app.dtos.request.transaction_request import TransactionRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
+from e_wallet_app.dtos.response.transaction_response import TransactionResponse
+
+
+def map(response: AccountResponse, account: Account) -> None:
+    response.set_first_name(account.get_first_name())
+    response.set_id_num(account.get_id_num())
+    response.set_email_address(account.get_email_address())
+    response.set_account_number(account.get_account_number())
+    response.set_last_name(account.get_last_name())
 
 
 def map_account_request_into_account(request: AccountCreationRequest) -> Account:
@@ -12,13 +23,6 @@ def map_account_request_into_account(request: AccountCreationRequest) -> Account
     return account
 
 
-def map(found_account: Account, account_response: AccountResponse) -> None:
-    account_response.set_first_name(found_account.get_first_name())
-    account_response.set_last_name(found_account.get_last_name())
-    account_response.set_account_number(found_account.get_account_number())
-    account_response.set_email_address(found_account.get_email_address())
-
-
 def map_account_to_response(response: AccountResponse, account: Account) -> None:
     response.set_first_name(account.get_first_name())
     response.set_id_num(account.get_id_num())
@@ -27,10 +31,28 @@ def map_account_to_response(response: AccountResponse, account: Account) -> None
     response.set_last_name(account.get_last_name())
 
 
-def map_account_into_response(account) -> AccountResponse:
+def map_account_into_response(account: Account) -> AccountResponse:
     response: AccountResponse = AccountResponse()
     response.set_name(account.get_first_name() + " " + account.get_last_name())
     response.set_account_number(account.get_account_number())
     response.set_email_address(account.get_email_address())
     response.set_id_num(account.get_id_num())
+    return response
+
+
+def map_transaction_request_to_transaction(request: TransactionRequest) -> Transaction:
+    transaction: Transaction = Transaction()
+    transaction.set_account_id_num(request.get_account_id_num())
+    transaction.set_amount(request.get_amount())
+    transaction.set_sender_pin(request.get_sender_pin())
+    transaction.set_recipient_account_number(request.get_recipient_account_number())
+    return transaction
+
+
+def map_transaction_to_transaction_response(transaction: Transaction):
+    response: TransactionResponse = TransactionResponse()
+    response.set_id_num(transaction.get_id_num())
+    response.set_amount(transaction.get_amount())
+    response.set_recipient_account_number(transaction.get_recipient_account_number())
+    response.set_account_id_num(transaction.get_account_id_num())
     return response
