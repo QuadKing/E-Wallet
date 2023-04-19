@@ -17,3 +17,6 @@ class TransactionRepository:
 
     def find_transaction_by_id(self, id_num: int) -> Transaction:
         raise NotImplementedError
+
+    def find_all_by_account_number(self, account_number: int):
+        raise NotImplementedError
