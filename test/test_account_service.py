@@ -43,4 +43,4 @@ class TestAccountService(TestCase):
             self.account_service.create_new_account(self.account_request)
 
     def test_account_is_credited_a_joining_bonus_of_1000_at_registration(self):
-        pass
+        self.assertEqual(1000, self.account_response.get_balance())

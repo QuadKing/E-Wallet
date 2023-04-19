@@ -1,24 +1,21 @@
 from unittest import TestCase
 
-from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository_impl import TransactionRepositoryImpl
-from e_wallet_app.dtos.reponse.transaction_response import TransactionResponse
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
+from e_wallet_app.dtos.response.transaction_response import TransactionResponse
 from e_wallet_app.services.transaction_service import TransactionService
 from e_wallet_app.services.transaction_service_impl import TransactionServiceImpl
-
 
 
 class TestTransactionService(TestCase):
 
     transaction_service: TransactionService
-    transaction: Transaction
+    transaction: TransactionRequest
 
     def setUp(self) -> None:
         self.transaction_service = TransactionServiceImpl()
-        self.transaction = Transaction()
+        self.transaction = TransactionRequest()
         self.transactionR = TransactionRepositoryImpl()
-        self
 
     def test_that_account_a_can_transfer_to_account_b(self):
         self.transaction.set_account_id_num(1)
@@ -32,7 +29,7 @@ class TestTransactionService(TestCase):
         self.transaction.set_amount(1000)
         self.transaction.set_sender_pin("1234")
         request = TransactionRequest()
-        transactions = self.transaction_service.ge
+        transactions = self.transaction_service.transfer()
         self.assertEqual(len(transactions), 1)
         for transaction in transactions:
             self.assertIsInstance(transaction, TransactionResponse)

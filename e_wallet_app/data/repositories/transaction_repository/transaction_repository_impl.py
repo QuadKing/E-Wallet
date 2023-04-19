@@ -36,14 +36,12 @@ class TransactionRepositoryImpl(TransactionRepository):
                 transactions.append(each)
         return transactions
 
-<<<<<<< HEAD
     def get_all_transactions(self) -> list[Transaction]:
         return self.__transactions
-=======
+
     def find_all_by_account_number(self, account_number: int):
         transactions: list[Transaction] = []
         for each in self.__transactions:
             if each.get_recipient_account_number() == account_number:
                 transactions.append(each)
         return transactions
->>>>>>> 6139a369bc2a289e9c4e3bb15a5f11de7d5ea43f
