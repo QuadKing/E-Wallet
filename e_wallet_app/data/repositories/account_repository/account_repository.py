@@ -15,3 +15,5 @@ class AccountRepository:
     def find_by_account_number(self, account_number: int) -> Account:
         raise NotImplementedError
 
+    def find_by_email_address(self, email_address: str) -> Account:
+        raise NotImplementedError
