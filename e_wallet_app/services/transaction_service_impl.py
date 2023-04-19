@@ -60,10 +60,10 @@ class TransactionServiceImpl(TransactionService):
             raise InsufficientFundException()
 
     def calculate_sum(self, transactions: list[Transaction]):
-        sum: float = 0.0
+        sums: float = 0.0
         for each in transactions:
-            sum += each.get_amount()
-        return sum
+            sums += each.get_amount()
+        return sums
 
     def validate_pin(self, request):
         if request.get_account_id_num() != self.WALLET_ID:

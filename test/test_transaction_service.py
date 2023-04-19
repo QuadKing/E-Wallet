@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse

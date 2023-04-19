@@ -1,11 +1,13 @@
 class AccountResponse:
 
     def __init__(self):
+        self.__id_num: int = 0
         self.__name: str = ""
         self.__account_number: int = 0
         self.__password: str = ""
         self.__email_address: str = ""
         self.__balance: float = 0.0
+        self.__name: str = ""
         self.__id_num: int = 0
 
     def set_name(self, name: str) -> None:
@@ -52,3 +54,4 @@ class AccountResponse:
         Account Id : {self.__id_num}
 
         """
+

@@ -13,6 +13,8 @@ from e_wallet_app.utils import mapper
 
 
 class AccountServiceImpl(AccountService):
+    __account_repository: AccountRepository = AccountRepository()
+
     def __init__(self):
         self.WALLET_ID = 0
         self.JOINING_BONUS: float = 1000.0
@@ -20,16 +22,29 @@ class AccountServiceImpl(AccountService):
         self.__transaction_service: TransactionService = TransactionServiceImpl()
         self.__account_number_generator: int = 99
 
+    def find_all_account(self) -> list[AccountResponse]:
+        account_response: AccountResponse = AccountResponse()
+        accounts = self.__account_repository.find_all_account()
+        account_response_list = [AccountResponse]
+        for account in accounts:
+            mapper.map(account_response, account)
+            account_response_list.append(account_response)
+        return account_response_list
+
     def find_account_by_id(self, id_num: int) -> AccountResponse:
         self.validate_account_id(id_num)
         account: Account = self.__account_repository.find_by_id(id_num)
         response: AccountResponse = AccountResponse()
+
         mapper.map(response, account)
-        self.set_balance(response)
         return response
 
-    def validate_account_id(self, id: int) -> None:
-        if self.__account_repository.find_by_id(id) is None:
+        # mapper.map(response, account)
+        # self.set_balance(response)
+        # return response
+
+    def validate_account_id(self, id_num: int) -> None:
+        if self.__account_repository.find_by_id(id_num) is None:
             raise AccountDoesNotExistException()
 
     def create_new_account(self, request: AccountCreationRequest) -> AccountResponse:
@@ -37,6 +52,9 @@ class AccountServiceImpl(AccountService):
         account: Account = mapper.map_account_request_into_account(request)
         account.set_account_number(self.generate_account_number())
         found_account: Account = self.__account_repository.save(account)
+        response: AccountResponse = mapper.map_account_into_response(account)
+        response.set_balance(self.generate_balance(response))
+
         response: AccountResponse = mapper.map_account_into_response(found_account)
         self.add_joining_bonus(response)
         response.set_balance(self.generate_balance(response))
@@ -74,4 +92,3 @@ class AccountServiceImpl(AccountService):
         transaction_request.set_recipient_account_number(response.get_account_number())
         transaction_request.set_account_id_num(self.WALLET_ID)
         self.__transaction_service.transfer(transaction_request)
-

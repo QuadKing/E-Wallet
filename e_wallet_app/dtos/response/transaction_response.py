@@ -3,7 +3,7 @@ class TransactionResponse:
     def __init__(self):
         self.__id_num: int = 0
         self.__account_id_num: int = 0
-        self.__recipient_account_number: int = ""
+        self.__recipient_account_number: int = 0
         self.__amount: float = 0.0
 
     def set_recipient_account_number(self, recipient_account_number: int) -> None:
