@@ -1,7 +1,5 @@
 from e_wallet_app.data.models.account import Account
 
-from e_wallet_app.dtos.response.account_response import AccountResponse
-
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.response.account_response import AccountResponse
 
