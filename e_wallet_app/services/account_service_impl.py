@@ -35,8 +35,8 @@ class AccountServiceImpl(AccountService):
         self.validate_account_id(id_num)
         account: Account = self.__account_repository.find_by_id(id_num)
         response: AccountResponse = AccountResponse()
-
         mapper.map(response, account)
+        self.set_balance(response)
         return response
 
     def validate_account_id(self, id_num: int) -> None:
