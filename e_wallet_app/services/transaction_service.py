@@ -16,3 +16,8 @@ class TransactionService:
 
     def transfer(self, request: TransactionRequest) -> TransactionResponse:
         raise NotImplementedError
+    def find_by_id(self, id_num: int) -> TransactionResponse:
+        raise NotImplementedError
+
+    def find_all_by_account_number(self, account_number: int) -> list[TransactionResponse]:
+        raise NotImplementedError

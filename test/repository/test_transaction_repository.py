@@ -1,9 +1,6 @@
 from unittest import TestCase
 
-from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.models.transaction import Transaction
-from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
-from e_wallet_app.data.repositories.account_repository.account_repository_impl import AccountRepositoryImpl
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository import TransactionRepository
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository_impl import TransactionRepositoryImpl
 

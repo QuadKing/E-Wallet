@@ -43,4 +43,3 @@ class Account:
 
     def get_id_num(self) -> int:
         return self.__id_num
-

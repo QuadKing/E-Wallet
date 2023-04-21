@@ -1,6 +1,7 @@
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
+from e_wallet_app.data.repositories.account_repository.account_repository_impl import AccountRepositoryImpl
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository import TransactionRepository
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository_impl import TransactionRepositoryImpl
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
@@ -15,17 +16,19 @@ from e_wallet_app.utils import mapper
 
 
 class TransactionServiceImpl(TransactionService):
+
     def __init__(self):
         self.WALLET_ID = 0
         self.__transaction_repository: TransactionRepository = TransactionRepositoryImpl()
-        self.__account_repository: AccountRepository = AccountRepository()
+        self.__account_repository: AccountRepository = AccountRepositoryImpl()
 
     def get_balance_by_account_number(self, response: AccountResponse) -> float:
         return self.calculate_balance(response.get_id_num(), response.get_account_number())
 
     def transfer(self, request: TransactionRequest) -> TransactionResponse:
         self.validate(request)
-        transaction: Transaction = self.__transaction_repository.save(mapper.map_transaction_request_to_transaction(request))
+        transaction: Transaction = self.__transaction_repository.save(
+            mapper.map_transaction_request_to_transaction(request))
         return mapper.map_transaction_to_transaction_response(transaction)
 
     def validate(self, request):
@@ -36,7 +39,8 @@ class TransactionServiceImpl(TransactionService):
 
     def validate_account_existence(self, request):
         sender_account: Account = self.__account_repository.find_by_id(request.get_account_id_num())
-        recipient_account: Account = self.__account_repository.find_by_account_number(request.get_recipient_account_number())
+        recipient_account: Account = self.__account_repository.find_by_account_number(
+            request.get_recipient_account_number())
         if sender_account is None or recipient_account is None:
             raise AccountDoesNotExistException()
 
@@ -56,10 +60,10 @@ class TransactionServiceImpl(TransactionService):
             raise InsufficientFundException()
 
     def calculate_sum(self, transactions: list[Transaction]):
-        sum: float = 0.0
+        sums: float = 0.0
         for each in transactions:
-            sum += each.get_amount()
-        return sum
+            sums += each.get_amount()
+        return sums
 
     def validate_pin(self, request):
         if request.get_account_id_num() != self.WALLET_ID:
@@ -77,12 +81,10 @@ class TransactionServiceImpl(TransactionService):
         transactions: list[Transaction] = self.__transaction_repository.get_all_transactions()
         return mapper.map_all_transactions_to_transaction_responses(transactions)
 
-    def find_list_of_transaction_by_account_id(self, account_id: int) -> TransactionResponse:
-        TransactionRepository.find_all_by_account_id(account_id)
-        transaction = TransactionResponse()
-        return transaction
+    def find_by_id(self, id_num: int) -> TransactionResponse:
+        transaction = self.__transaction_repository.find_by_id(id_num)
+        return mapper.map_transaction_to_transaction_response(transaction)
 
-
-
-
-
+    def find_all_by_account_number(self, account_number: int) -> list[TransactionResponse]:
+        transactions = self.__transaction_repository.find_all_by_account_number(account_number)
+        return mapper.map_transaction_history_to_transaction_responses(transactions)
