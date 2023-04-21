@@ -11,6 +11,10 @@ def map(response: AccountResponse, account: Account) -> None:
     response.set_email_address(account.get_email_address())
     response.set_account_number(account.get_account_number())
     response.set_name(account.get_first_name() + " " + account.get_last_name())
+    response.set_name(account.get_first_name() + " " + account.get_last_name())
+    response.set_id_num(account.get_id_num())
+    response.set_email_address(account.get_email_address())
+    response.set_account_number(account.get_account_number())
 
 
 def map_account_request_into_account(request: AccountCreationRequest) -> Account:
@@ -27,6 +31,10 @@ def map_account_to_response(response: AccountResponse, account: Account) -> None
     response.set_email_address(account.get_email_address())
     response.set_account_number(account.get_account_number())
     response.set_name(account.get_first_name() + " " + account.get_last_name())
+    response.set_name(account.get_first_name() + " " + account.get_last_name())
+    response.set_id_num(account.get_id_num())
+    response.set_email_address(account.get_email_address())
+    response.set_account_number(account.get_account_number())
 
 
 def map_account_into_response(account: Account) -> AccountResponse:
@@ -54,3 +62,10 @@ def map_transaction_to_transaction_response(transaction: Transaction):
     response.set_recipient_account_number(transaction.get_recipient_account_number())
     response.set_account_id_num(transaction.get_account_id_num())
     return response
+
+
+def map_transaction_history_to_transaction_responses(transactions):
+    transaction_responses: list[TransactionResponse] = []
+    for each in transactions:
+        transaction_responses.append(map_transaction_to_transaction_response(each))
+    return transaction_responses

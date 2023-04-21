@@ -10,6 +10,12 @@ class AccountResponse:
         self.__name: str = ""
         self.__id_num: int = 0
 
+    def set_name(self, name: str) -> None:
+        self.__name = name
+
+    def get_name(self) -> str:
+        return self.__name
+
     def set_account_number(self, account_number: int) -> None:
         self.__account_number = account_number
 
@@ -40,17 +46,10 @@ class AccountResponse:
     def get_balance(self) -> float:
         return self.__balance
 
-    def set_name(self, name):
-        self.__name = name
-
-    def get_name(self, name):
-        return self.__name
-
     def __str__(self) -> str:
         return f"""
-         Name : {self.__name}
+        Full Name : {self.__name}
         Email Address: {self.__email_address}
         Account Number : {self.__account_number}
         Account Id : {self.__id_num}
-
         """

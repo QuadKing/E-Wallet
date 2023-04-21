@@ -28,10 +28,11 @@ class TestAccountService(TestCase):
         self.account_response = self.account_service.create_new_account(self.account_request)
 
     def test_account_can_be_find_by_id(self):
+        self.assertEqual("Prof Marvellous", self.account_service.find_account_by_id(1).get_name())
         self.account = Account()
         self.account_request = AccountCreationRequest()
         self.account_service.create_new_account(self.account_request)
-        self.assertEquals("Prof", self.account_service.find_account_by_id(1).get_first_name())
+        self.assertEquals("Prof Marvellous", self.account_service.find_account_by_id(1).get_name())
 
     def test_account_can_be_created(self):
         self.assertEqual(1, self.account_service.count())

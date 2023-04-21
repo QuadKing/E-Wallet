@@ -1,5 +1,5 @@
-from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 from e_wallet_app.data.models.account import Account
+from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 from e_wallet_app.data.repositories.account_repository.account_repository_impl import AccountRepositoryImpl
 from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
 from e_wallet_app.dtos.request.transaction_request import TransactionRequest
@@ -18,7 +18,7 @@ class AccountServiceImpl(AccountService):
     def __init__(self):
         self.WALLET_ID = 0
         self.JOINING_BONUS: float = 1000.0
-        self.__account_repository: AccountRepositoryImpl = AccountRepositoryImpl()
+        self.__account_repository: AccountRepository = AccountRepositoryImpl()
         self.__transaction_service: TransactionService = TransactionServiceImpl()
         self.__account_number_generator: int = 99
 
@@ -35,7 +35,6 @@ class AccountServiceImpl(AccountService):
         self.validate_account_id(id_num)
         account: Account = self.__account_repository.find_by_id(id_num)
         response: AccountResponse = AccountResponse()
-
         mapper.map(response, account)
         return response
 
@@ -48,9 +47,6 @@ class AccountServiceImpl(AccountService):
         account: Account = mapper.map_account_request_into_account(request)
         account.set_account_number(self.generate_account_number())
         found_account: Account = self.__account_repository.save(account)
-        response: AccountResponse = mapper.map_account_into_response(account)
-        response.set_balance(self.generate_balance(response))
-
         response: AccountResponse = mapper.map_account_into_response(found_account)
         self.add_joining_bonus(response)
         response.set_balance(self.generate_balance(response))
