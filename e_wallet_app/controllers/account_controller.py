@@ -6,10 +6,9 @@ from e_wallet_app.services.account_service_impl import AccountServiceImpl
 
 
 class AccountController:
-    account_service: AccountService = AccountServiceImpl()
+
+    def __init__(self):
+        self.__account_service: AccountService = AccountServiceImpl()
 
     def create_new_account(self, account_creation_request: AccountCreationRequest) -> AccountResponse:
-        try:
-            return self.account_service.create_new_account(account_creation_request)
-        except InvalidCredentialException():
-            raise InvalidCredentialException()
+        return self.__account_service.create_new_account(account_creation_request)
