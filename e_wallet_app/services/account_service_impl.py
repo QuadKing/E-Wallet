@@ -36,6 +36,7 @@ class AccountServiceImpl(AccountService):
         account: Account = self.__account_repository.find_by_id(id_num)
         response: AccountResponse = AccountResponse()
         mapper.map(response, account)
+        self.set_balance(response)
         return response
 
     def validate_account_id(self, id_num: int) -> None:
@@ -64,7 +65,7 @@ class AccountServiceImpl(AccountService):
 
     def validate_duplicate_account(self, email_address: str):
         if self.__account_repository.find_by_email_address(email_address) is not None:
-            raise DuplicateAccountException()
+            2
 
     def find_by_account_number(self, account_number: int) -> AccountResponse:
         account: Account = self.__account_repository.find_by_account_number(account_number)
