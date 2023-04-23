@@ -23,9 +23,10 @@ class AccountServiceImpl(AccountService):
         self.__account_number_generator: int = 99
 
     def find_all_account(self) -> list[AccountResponse]:
+        count_all_accounts = 0
         account_response: AccountResponse = AccountResponse()
         accounts = self.__account_repository.find_all_account()
-        account_response_list = [AccountResponse]
+        account_response_list = []
         for account in accounts:
             mapper.map(account_response, account)
             account_response_list.append(account_response)
@@ -48,9 +49,6 @@ class AccountServiceImpl(AccountService):
         account: Account = mapper.map_account_request_into_account(request)
         account.set_account_number(self.generate_account_number())
         found_account: Account = self.__account_repository.save(account)
-        response: AccountResponse = mapper.map_account_into_response(account)
-        response.set_balance(self.generate_balance(response))
-
         response: AccountResponse = mapper.map_account_into_response(found_account)
         self.add_joining_bonus(response)
         response.set_balance(self.generate_balance(response))

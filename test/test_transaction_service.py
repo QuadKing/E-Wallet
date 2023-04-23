@@ -53,11 +53,9 @@ class TestTransactionService(TestCase):
         self.transaction.set_account_id_num(self.account2.get_id_num())
         self.transaction.set_recipient_account_number(self.account1.get_account_number())
         self.transaction_service.transfer(self.transaction)
-
         self.transaction.set_amount(500.0)
         self.transaction.set_sender_pin("1234")
         self.transaction.set_account_id_num(self.account1.get_id_num())
         self.transaction.set_recipient_account_number(self.account2.get_account_number())
         self.transaction_service.transfer(self.transaction)
-
         self.assertEqual(4, len(self.transaction_service.find_all_by_account_number(100)))
