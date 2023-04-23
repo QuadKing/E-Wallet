@@ -23,9 +23,10 @@ class AccountServiceImpl(AccountService):
         self.__account_number_generator: int = 99
 
     def find_all_account(self) -> list[AccountResponse]:
+        count_all_accounts = 0
         account_response: AccountResponse = AccountResponse()
         accounts = self.__account_repository.find_all_account()
-        account_response_list = [AccountResponse]
+        account_response_list = []
         for account in accounts:
             mapper.map(account_response, account)
             account_response_list.append(account_response)
@@ -65,7 +66,7 @@ class AccountServiceImpl(AccountService):
 
     def validate_duplicate_account(self, email_address: str):
         if self.__account_repository.find_by_email_address(email_address) is not None:
-            2
+            raise DuplicateAccountException()
 
     def find_by_account_number(self, account_number: int) -> AccountResponse:
         account: Account = self.__account_repository.find_by_account_number(account_number)
