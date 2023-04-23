@@ -86,5 +86,12 @@ class TransactionServiceImpl(TransactionService):
         return mapper.map_transaction_to_transaction_response(transaction)
 
     def find_all_by_account_number(self, account_number: int) -> list[TransactionResponse]:
+
         transactions = self.__transaction_repository.find_all_by_account_number(account_number)
         return mapper.map_transaction_history_to_transaction_responses(transactions)
+
+        transactions: list[Transaction] = self.__transaction_repository.find_all_by_account_number(account_number)
+        for each in self.__transaction_repository.find_all_by_account_id(self.__account_repository.find_by_account_number(account_number).get_id_num()):
+            transactions.append(each)
+        return mapper.map_transaction_history_to_transaction_responses(transactions)
+
