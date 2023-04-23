@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import self
+
 from e_wallet_app.data.models.transaction import Transaction
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository import TransactionRepository
 from e_wallet_app.data.repositories.transaction_repository.transaction_repository_impl import TransactionRepositoryImpl
@@ -39,8 +41,6 @@ class TestTransactionRepository(TestCase):
         self.transaction_repository.save(transaction2)
         self.assertEqual(2, self.transaction_repository.count())
         self.assertEqual(2, len(self.transaction_repository.find_all_by_account_id(1)))
-
-
 
 
 

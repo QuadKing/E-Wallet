@@ -45,7 +45,7 @@ def map_all_transactions_to_transaction_responses(transactions) -> list[Transact
 
 def map_transaction_request_to_transaction(request: TransactionRequest) -> Transaction:
     transaction: Transaction = Transaction()
-    transaction.set_account_id_num(request.ge())
+    transaction.set_account_id_num(request.get_account_id_num())
     transaction.set_amount(request.get_amount())
     transaction.set_sender_pin(request.get_sender_pin())
     transaction.set_recipient_account_number(request.get_recipient_account_number())
@@ -59,12 +59,11 @@ def map_transaction_to_transaction_response(transaction: Transaction):
     response.set_recipient_account_number(transaction.get_recipient_account_number())
     response.set_account_id_num(transaction.get_account_id_num())
     return response
-<<<<<<< HEAD
-=======
+
 
 def map_transaction_history_to_transaction_responses(transactions):
     transaction_responses: list[TransactionResponse] = []
     for each in transactions:
         transaction_responses.append(map_transaction_to_transaction_response(each))
     return transaction_responses
->>>>>>> f06bb93d9f8c7064732ae88f457a4d5ee1ff92ac
+

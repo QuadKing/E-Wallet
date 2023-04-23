@@ -31,6 +31,7 @@ class TransactionRepositoryImpl(TransactionRepository):
             if each.get_id_num() == id_num:
                 return each
 
+
     def find_all_by_account_id(self, account_id_num: int) -> list[Transaction]:
         transactions: list[Transaction] = []
         for each in self.__transactions:
@@ -44,7 +45,8 @@ class TransactionRepositoryImpl(TransactionRepository):
     def find_all_by_account_number(self, account_number: int):
         transactions: list[Transaction] = []
         for each in self.__transactions:
-            if each.get_recipient_account_number() == account_number:
+            if each.get_recipient_account_number() == account_number \
+                    or each.sender_account_number == account_number:
                 transactions.append(each)
         return transactions
 

@@ -44,3 +44,4 @@ class AccountRepositoryImpl(AccountRepository):
         for each in self.__accounts:
             if each.get_email_address() == email_address:
                 return each
+

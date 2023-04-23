@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-from e_wallet_app.dtos.request.account_creation_request import AccountCreationRequest
-=======
->>>>>>> f06bb93d9f8c7064732ae88f457a4d5ee1ff92ac
 from e_wallet_app.dtos.response.account_response import AccountResponse
 
 

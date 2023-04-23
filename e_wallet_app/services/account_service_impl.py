@@ -92,3 +92,8 @@ class AccountServiceImpl(AccountService):
         transaction_request.set_recipient_account_number(response.get_account_number())
         transaction_request.set_account_id_num(self.WALLET_ID)
         self.__transaction_service.transfer(transaction_request)
+
+
+
+
+
