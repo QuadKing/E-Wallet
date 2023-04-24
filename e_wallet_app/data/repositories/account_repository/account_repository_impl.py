@@ -1,11 +1,13 @@
+
+
 from e_wallet_app.data.models.account import Account
 from e_wallet_app.data.repositories.account_repository.account_repository import AccountRepository
 
 
 class AccountRepositoryImpl(AccountRepository):
+    __accounts: list[Account] = []
 
     def __init__(self):
-        self.__accounts: list[Account] = []
         self.__count: int = 0
 
     def save(self, account: Account) -> Account:
@@ -35,8 +37,10 @@ class AccountRepositoryImpl(AccountRepository):
             if each.get_account_number() == account_number:
                 return each
 
+    def find_all_account(self) -> list[Account]:
+        return self.__accounts
+
     def find_by_email_address(self, email_address: str) -> Account:
         for each in self.__accounts:
             if each.get_email_address() == email_address:
                 return each
-

@@ -29,4 +29,3 @@ class TransactionRequest:
 
     def get_account_id_num(self) -> int:
         return self.__account_id_num
-
