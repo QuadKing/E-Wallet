@@ -52,6 +52,4 @@ class AccountResponse:
         Email Address: {self.__email_address}
         Account Number : {self.__account_number}
         Account Id : {self.__id_num}
-
         """
-

@@ -14,20 +14,11 @@ class AccountController:
         return account
 
     def create_new_account(self, request):
-        account = self.__account_service.create_new_account(request)
-        return account
+        d_account = self.__account_service.create_new_account(request)
+        return d_account
 
     def get_account_balance(self, account_number):
-        account = self.__account_service.find_by_account_number(account_number)
-        return account
-    #
-    # def transfer_money(self, request):
-    #     self.__account_service.transfer(request)
-    #     return "Transfer successful"
-    #
-
-
-
-
+        balance = self.__account_service.find_by_account_number(account_number)
+        return balance
 
 

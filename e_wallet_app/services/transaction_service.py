@@ -16,6 +16,7 @@ class TransactionService:
 
     def transfer(self, request: TransactionRequest) -> TransactionResponse:
         raise NotImplementedError
+
     def find_by_id(self, id_num: int) -> TransactionResponse:
         raise NotImplementedError
 

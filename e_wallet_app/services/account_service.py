@@ -3,7 +3,7 @@ from e_wallet_app.dtos.response.account_response import AccountResponse
 
 class AccountService:
 
-    def create_new_account(self, account_request):
+    def create_new_account(self, account_request) -> AccountResponse:
         raise NotImplementedError
 
     def find_all_account(self) -> list[AccountResponse]:
