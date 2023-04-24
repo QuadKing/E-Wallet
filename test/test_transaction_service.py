@@ -43,10 +43,10 @@ class TestTransactionService(TestCase):
         self.transaction = None
 
     def test_find_all_transactions(self):
-        self.transaction.amount = 500.0
-        self.transaction.sender_pin = "1111"
-        self.transaction.account_id_num = self.account2.id_num
-        self.transaction.recipient_account_number = self.account1.account_number
+        self.transaction.set_amount(500)
+        self.transaction.set_sender_pin("1111")
+        self.transaction.set_account_id_num(self.account2.id_num)
+        self.transaction.set_recipient_account_number(self.account1.account_number)
         self.transaction_service.transfer(self.transaction)
 
         self.assertEqual(500, self.transaction_service.find_by_id(1).amount)
@@ -76,10 +76,6 @@ class TestTransactionService(TestCase):
         self.transaction.recipient_account_number = self.account2.account_number
         self.transaction_service.transfer(self.transaction)
 
-
-
-
-
         self.transaction.set_amount(500.0)
         self.transaction.set_sender_pin("1234")
         self.transaction.set_account_id_num(self.account1.get_id_num())
@@ -87,4 +83,3 @@ class TestTransactionService(TestCase):
         self.transaction_service.transfer(self.transaction)
 
         self.assertEqual(4, len(self.transaction_service.find_all_by_account_number(100)))
-
